@@ -24,6 +24,26 @@ function App() {
     <div className="App font-sans">
       <ThemeContext.Provider value={theme}>
         <Nav onToggle={(e) => handleToggleTheme(e)}></Nav>
+        <div className="container mx-auto mt-10 grid grid-cols-1 gap-8">
+          <Card title="Button">
+            <div className="grid grid-cols-4 gap-4">
+              <Button disabled={false} style="primary">
+                Primary
+              </Button>
+              <Button disabled={true} style="primary">
+                Primary disabled
+              </Button>
+            </div>
+            <div className="grid grid-cols-4 gap-4 mt-4">
+              <Button disabled={false} style="secondary">
+                Secondary
+              </Button>
+              <Button disabled={true} style="secondary">
+                Secondary disabled
+              </Button>
+            </div>
+          </Card>
+        </div>
       </ThemeContext.Provider>
     </div>
   );
