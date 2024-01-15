@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 import Calculator from "./components/Calculator";
+import TodoList from "./components/TodoList";
 
 function App() {
   const [theme, setTheme] = useState(Theme.DARK);
@@ -30,6 +31,9 @@ function App() {
             <div className="flex justify-center">
               <Calculator></Calculator>
             </div>
+          </Card>
+          <Card title="Todo">
+            <TodoList></TodoList>
           </Card>
           <Card title="Button">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
