@@ -4,6 +4,7 @@ import { Theme, ThemeContext } from "./libs/context/theme-context";
 import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
+import Calculator from "./components/Calculator";
 
 function App() {
   const [theme, setTheme] = useState(Theme.DARK);
@@ -24,9 +25,14 @@ function App() {
     <div className="App font-sans">
       <ThemeContext.Provider value={theme}>
         <Nav onToggle={(e) => handleToggleTheme(e)}></Nav>
-        <div className="container mx-auto mt-10 grid grid-cols-1 gap-8">
+        <div className="container mx-auto mt-10 grid grid-cols-1 gap-8 px-5 sm:px-0">
+          <Card title="Calculator">
+            <div className="flex justify-center">
+              <Calculator></Calculator>
+            </div>
+          </Card>
           <Card title="Button">
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Button disabled={false} style="primary">
                 Primary
               </Button>
@@ -34,7 +40,7 @@ function App() {
                 Primary disabled
               </Button>
             </div>
-            <div className="grid grid-cols-4 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
               <Button disabled={false} style="secondary">
                 Secondary
               </Button>

@@ -13,3 +13,11 @@
 .btn-secondary {
   @apply bg-white text-gray-900 border border-yellow-400 hover:bg-yellow-400 hover:text-white active:bg-yellow-500/75 transition ease-in-out duration-300 disabled:cursor-not-allowed disabled:opacity-75 disabled:border-gray-400 disabled:hover:bg-white disabled:hover:text-gray-900;
 }
+
+.btn-cal {
+  @apply text-center p-1 bg-gray-400 rounded shadow-white cursor-pointer hover:opacity-75;
+}
+
+.btn-cal-operator {
+  @apply text-yellow-400;
+}
