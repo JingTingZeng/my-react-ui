@@ -109,7 +109,7 @@ const TodoList = () => {
                     onChange={() => handleComplete(item)}
                   />
                   <label
-                    className="py-4 cursor-pointer flex items-center grow before:content-[''] before:block before:w-5 before:h-5 before:mr-2 before:rounded-full before:border before:border-gray-200 peer-checked:before:bg-yellow-400 peer-checked:before:border-0 peer-checked:before:bg-[url('./check.svg')] peer-checked:before:bg-[length:12px_auto] peer-checked:before:bg-no-repeat peer-checked:before:bg-center"
+                    className="py-4 cursor-pointer flex items-center grow before:content-[''] before:block before:w-5 before:h-5 before:mr-2 before:rounded-full before:border before:border-gray-200 peer-checked:before:bg-yellow-400 peer-checked:before:border-0 peer-checked:before:bg-[url('./assets/check.svg')] peer-checked:before:bg-[length:12px_auto] peer-checked:before:bg-no-repeat peer-checked:before:bg-center"
                     htmlFor={"check" + item.id}
                   >
                     {item.task}
