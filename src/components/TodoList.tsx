@@ -76,7 +76,11 @@ const TodoList = () => {
           placeholder="add todo task..."
           onChange={(e) => setTask(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (
+              e.key === "Enter" &&
+              task !== "" &&
+              !e.nativeEvent.isComposing
+            ) {
               handleAddTask(task);
             }
           }}
