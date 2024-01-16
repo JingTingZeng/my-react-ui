@@ -6,6 +6,7 @@ import Card from "./components/Card";
 import Button from "./components/Button";
 import Calculator from "./components/Calculator";
 import TodoList from "./components/TodoList";
+import TicTacToe from "./components/TicTacToe";
 
 function App() {
   const [theme, setTheme] = useState(Theme.DARK);
@@ -27,6 +28,11 @@ function App() {
       <ThemeContext.Provider value={theme}>
         <Nav onToggle={(e) => handleToggleTheme(e)}></Nav>
         <div className="container mx-auto mt-10 grid grid-cols-1 gap-8 px-5 sm:px-0">
+          <Card title="TicTacToe">
+            <div className="flex justify-center">
+              <TicTacToe></TicTacToe>
+            </div>
+          </Card>
           <Card title="Calculator">
             <div className="flex justify-center">
               <Calculator></Calculator>
