@@ -5,10 +5,11 @@ import { FormProvider, useForm } from "react-hook-form";
 import * as Fields from "../libs/utils/inputValidation.util";
 
 const ContactForm = () => {
-  const methods = useForm();
+  const methods = useForm({ mode: "onTouched" });
 
   const handleSubmit = methods.handleSubmit((data) => {
     console.log(data);
+    methods.reset();
   });
 
   return (
@@ -34,7 +35,11 @@ const ContactForm = () => {
         </div>
         <div className="flex justify-center mt-8">
           <div className="sm:max-w-60 w-full">
-            <Button onClick={handleSubmit} style="primary">
+            <Button
+              disabled={!methods.formState.isValid}
+              onClick={handleSubmit}
+              style="primary"
+            >
               Send
             </Button>
           </div>

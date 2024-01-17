@@ -27,16 +27,13 @@ const PhoneField = {
   type: 'text',
   id: 'phone',
   placeholder: 'type your phone...',
+  max: 10,
   validation: {
     required: "This input is required.",
     pattern: {
       value: /^09[0-9]{8}$/,
       message: "This input is number only, and start with '09'.",
-    },
-    maxLength: {
-      value: 10,
-      message: "This input exceed maxLength.",
-    },
+    }
   }
 }
 

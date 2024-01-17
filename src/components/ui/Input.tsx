@@ -10,6 +10,8 @@ interface InputProps {
   placeholder: string;
   validation?: RegisterOptions<FieldValues, string>;
   multiLine?: boolean;
+  min?: number | undefined;
+  max?: number | undefined;
 }
 
 const Input = ({
@@ -19,6 +21,8 @@ const Input = ({
   placeholder,
   validation,
   multiLine = false,
+  min,
+  max,
 }: InputProps) => {
   const {
     register,
@@ -48,6 +52,8 @@ const Input = ({
           type={type}
           className="input"
           placeholder={placeholder}
+          minLength={min}
+          maxLength={max}
           {...register(label, validation)}
         />
       )}
