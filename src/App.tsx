@@ -42,6 +42,11 @@ function App() {
           <Card title="Todo">
             <TodoList></TodoList>
           </Card>
+          <Card title="Validate Form">
+            <div className="flex justify-center">
+              <ContactForm></ContactForm>
+            </div>
+          </Card>
           <Card title="Button">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Button disabled={false} style="primary">

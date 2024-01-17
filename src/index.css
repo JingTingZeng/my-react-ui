@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn {
-  @apply py-3 px-6 rounded-full font-bold;
+  @apply py-3 px-6 rounded-full font-bold w-full;
 }
 
 .btn-primary {
@@ -20,4 +20,8 @@
 
 .btn-cal-operator {
   @apply text-yellow-400;
+}
+
+.input {
+  @apply w-full p-3 font-medium border rounded-md border-slate-300 placeholder:opacity-60 dark:text-gray-800;
 }
