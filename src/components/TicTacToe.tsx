@@ -105,14 +105,6 @@ const TicTacToe = () => {
     return () => window.removeEventListener("animationend", handleAnimation);
   }, [winnerResult]);
 
-  useEffect(() => {
-    const nextWinnerResult = calculateWinner(square);
-    if (nextWinnerResult) {
-      setWinnerResult(nextWinnerResult);
-      setShowAnimation(!!nextWinnerResult.className);
-    }
-  }, [square]);
-
   const result = useMemo(() => {
     switch (winnerResult?.winner) {
       case Winner.O:
@@ -134,6 +126,12 @@ const TicTacToe = () => {
 
     setSquare(nextSquare);
     setXIsCurrent(!xIsCurrent);
+
+    const nextWinnerResult = calculateWinner(nextSquare);
+    if (nextWinnerResult) {
+      setWinnerResult(nextWinnerResult);
+      setShowAnimation(!!nextWinnerResult.className);
+    }
   };
 
   const restart = () => {
