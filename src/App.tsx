@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { Theme, ThemeContext } from "./libs/context/theme-context";
 import Nav from "./components/Nav";
-import Card from "./components/Card";
-import Button from "./components/Button";
+import Card from "./components/ui/Card";
+import Button from "./components/ui/Button";
 import Calculator from "./components/Calculator";
 import TodoList from "./components/TodoList";
 import TicTacToe from "./components/TicTacToe";
+import ContactForm from "./components/ContactForm";
 
 function App() {
   const [theme, setTheme] = useState(Theme.DARK);

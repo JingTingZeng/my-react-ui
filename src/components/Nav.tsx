@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Theme, ThemeContext } from "../libs/context/theme-context";
-import Switcher from "./Switcher";
+import Switcher from "./ui/Switcher";
 
 interface NavProps {
   onToggle: (event: React.ChangeEvent<HTMLInputElement>) => void;

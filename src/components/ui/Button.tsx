@@ -2,7 +2,7 @@ import React from "react";
 
 interface ButtonProps {
   style: "primary" | "secondary";
-  disabled: boolean;
+  disabled?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
 }

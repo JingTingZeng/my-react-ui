@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import Button from "./Button";
+import Button from "./ui/Button";
 
 enum Winner {
   X = "X",
