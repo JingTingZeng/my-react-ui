@@ -14,13 +14,16 @@ const ContactForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className="w-full" noValidate>
+      <form
+        className=" bg-white max-w-3xl w-full rounded-xl p-5 sm:p-10 sm:rounded-3xl"
+        noValidate
+      >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Input {...Fields.NameField}></Input>
           <Input {...Fields.EmailField}></Input>
           <Input {...Fields.PhoneField}></Input>
           <Input {...Fields.PasswordField}></Input>
-          <div className="col-span-2">
+          <div className="sm:col-span-2">
             <Input
               label="description"
               type="text"

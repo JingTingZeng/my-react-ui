@@ -35,7 +35,7 @@ const Input = ({
   return (
     <div className="flex flex-col w-full gap-2">
       <div className="flex justify-between">
-        <label htmlFor={id} className="font-bold capitalize">
+        <label htmlFor={id} className="font-bold capitalize dark:text-gray-800">
           {label}
         </label>
       </div>
