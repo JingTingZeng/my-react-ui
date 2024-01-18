@@ -1,70 +1,37 @@
-import React, { useMemo, useState } from "react";
-import { v4 as uuid } from "uuid";
-
-enum TodoStatus {
-  ALL = "All",
-  ACTIVE = "Active",
-  COMPLETE = "Complete",
-}
-
-interface Todo {
-  id: string;
-  task: string;
-  complete: boolean;
-}
+import React, { useState } from "react";
+import { TodoFilter } from "../libs/interface/todo.interface";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../libs/state/store";
+import {
+  addTodo,
+  completeTodo,
+  deleteTodo,
+  selectActiveCount,
+  selectDisplayTodo,
+} from "../libs/state/todo/todoSlice";
 
 const TodoList = () => {
-  const [todoList, setTodoList] = useState<Todo[]>([]);
+  const dispatch = useDispatch();
   const [task, setTask] = useState("");
-  const [currentStatus, setCurrentStatus] = useState(TodoStatus.ALL);
+  const [currentStatus, setCurrentStatus] = useState(TodoFilter.ALL);
 
-  const activeList = todoList.filter((item) => !item.complete);
+  const displayTodoList = useSelector((state: RootState) =>
+    selectDisplayTodo(state, currentStatus)
+  );
+  const activeTodoCount = useSelector(selectActiveCount);
 
   const handleAddTask = (task: string) => {
-    setTodoList([
-      ...todoList,
-      {
-        id: uuid(),
-        task: task,
-        complete: false,
-      },
-    ]);
-
+    dispatch(addTodo(task));
     setTask("");
   };
 
-  const handleComplete = (todo: Todo) => {
-    const nextTodoList = todoList.map((item) => {
-      if (item.id === todo.id) {
-        return { ...item, complete: true };
-      } else {
-        return item;
-      }
-    });
-
-    setTodoList(nextTodoList);
+  const handleComplete = (id: string) => {
+    dispatch(completeTodo(id));
   };
 
   const handleDelete = (id: string) => {
-    setTodoList(todoList.filter((item) => item.id !== id));
+    dispatch(deleteTodo(id));
   };
-
-  const filterDisplayTodo = (todoList: Todo[], filter: TodoStatus) => {
-    switch (filter) {
-      case TodoStatus.ALL:
-        return todoList;
-      case TodoStatus.ACTIVE:
-        return activeList;
-      case TodoStatus.COMPLETE:
-        return todoList.filter((item) => item.complete);
-      default:
-        return todoList;
-    }
-  };
-
-  const displayTodoList = useMemo(() => {
-    return filterDisplayTodo(todoList, currentStatus);
-  }, [currentStatus, todoList]);
 
   return (
     <div className="bg-white max-w-lg w-full rounded-lg mx-auto dark:text-gray-700">
@@ -96,7 +63,9 @@ const TodoList = () => {
         <ul>
           {displayTodoList.length === 0 ? (
             <div className="text-gray-500 text-center p-4">
-              Congratulation ! You have done it!
+              {currentStatus === TodoFilter.COMPLETE && activeTodoCount > 0
+                ? `You still have ${activeTodoCount} todo left!`
+                : "Congratulation ! You have done it!"}
             </div>
           ) : (
             displayTodoList.map((item) => {
@@ -110,7 +79,7 @@ const TodoList = () => {
                     className="w-0 h-0 invisible peer block"
                     type="checkbox"
                     checked={item.complete}
-                    onChange={() => handleComplete(item)}
+                    onChange={() => handleComplete(item.id)}
                   />
                   <label
                     className="py-4 cursor-pointer flex items-center grow before:content-[''] before:block before:w-5 before:h-5 before:mr-2 before:rounded-full before:border before:border-gray-200 peer-checked:before:bg-yellow-400 peer-checked:before:border-0 peer-checked:before:bg-[url('./assets/check.svg')] peer-checked:before:bg-[length:12px_auto] peer-checked:before:bg-no-repeat peer-checked:before:bg-center"
@@ -130,9 +99,9 @@ const TodoList = () => {
           )}
         </ul>
         <div className="sm:flex px-4 py-3 justify-between items-center">
-          <div className="text-slate-400">{activeList.length} items left</div>
+          <div className="text-slate-400">{activeTodoCount} items left</div>
           <div className="flex justify-center items-center sm:mt-0 mt-2">
-            {Object.values(TodoStatus).map((value) => {
+            {Object.values(TodoFilter).map((value) => {
               return (
                 <button
                   className={
