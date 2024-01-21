@@ -5,7 +5,7 @@ import Nav from "./components/Nav";
 import Card from "./components/ui/Card";
 import Button from "./components/ui/Button";
 import Calculator from "./components/Calculator";
-import TodoList from "./components/TodoList";
+import TodoList from "./components/todo/TodoList";
 import TicTacToe from "./components/TicTacToe";
 import ContactForm from "./components/ContactForm";
 
