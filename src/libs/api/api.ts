@@ -1,6 +1,6 @@
 import { HttpMethod } from "../enum/api.enum";
 
-const sendApiRequest = async (url: string, method = HttpMethod.Get, data = null) => {
+const sendApiRequest = async <T>(url: string, method = HttpMethod.Get, data = null): Promise<T> => {
   const requestOptions = {
     method,
     headers: new Headers({

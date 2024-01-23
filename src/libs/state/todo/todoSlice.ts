@@ -7,6 +7,7 @@ import { LoadingState } from "../../interface/loading-state.interface";
 import { Status } from "../../enum/status.enum";
 import sendApiRequest from "../../api/api";
 import { API_URL } from "../../api/api-config";
+import { TodoDataInfo } from "../../api/model/todo.model";
 
 export interface TodoState {
   list: TodoData[],
@@ -22,13 +23,6 @@ const initialState: TodoState = {
     error: undefined
   }
 }
-
-export const fetchTodoList = createAsyncThunk(
-  'todo/fetchTodoList',
-  async () => {
-    const res = await sendApiRequest(API_URL.GetTodoList);
-    return convertToViewModel(res);
-  })
 
 export const todoSlice = createSlice({
   name: 'todo',
@@ -85,6 +79,14 @@ export const selectDisplayTodoList = createSelector(
   ({ list, filter }) => getFilterTodoList(list, filter)
 )
 
+//thunk
+export const fetchTodoList = createAsyncThunk(
+  'todo/fetchTodoList',
+  async () => {
+    const res = await sendApiRequest<TodoDataInfo[]>(API_URL.GetTodoList);
+    return convertToViewModel(res);
+  })
+
 const getFilterTodoList = (todoList: TodoData[], filter: TodoFilter): TodoData[] => {
   switch (filter) {
     case TodoFilter.ALL:
@@ -96,7 +98,7 @@ const getFilterTodoList = (todoList: TodoData[], filter: TodoFilter): TodoData[]
   }
 };
 
-const convertToViewModel = (dataList: { id: string, title: string, completed: boolean }[]) => {
+const convertToViewModel = (dataList: TodoDataInfo[]) => {
   return dataList.map((item) => ({
     id: item.id,
     task: item.title,
